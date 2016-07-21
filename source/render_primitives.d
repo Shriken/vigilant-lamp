@@ -74,5 +74,6 @@ void draw_line(RenderLoc loc1, RenderLoc loc2, RenderColor color) {
 
 void draw_rect(RenderLoc loc1, RenderLoc loc2, RenderColor color) {
     SDL_SetRenderDrawColor(renderer, color[0], color[1], color[2], color[3]);
-    SDL_RenderFillRect(renderer, SDL_Rect(loc1[0], loc1[1], loc2[0], loc2[1]));
+    auto rect = SDL_Rect(loc1[0], loc1[1], loc2[0], loc2[1]);
+    SDL_RenderFillRect(renderer, &rect);
 }
