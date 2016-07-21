@@ -1,5 +1,5 @@
 module renderer;
 
-import level;
+import game_state;
 
-void render(Level level) {}
+void render(GameState gameState) {}

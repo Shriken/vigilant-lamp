@@ -1,15 +1,14 @@
 import std.stdio;
 
-import level;
+import game_state;
 import renderer;
 
 void main() {
 	writeln("hiya, starting up");
-	auto level = new Level();
-	writeln(level);
+	auto gameState = GameState();
 
 	while (true) {
-		level.update();
-		renderer.render(level);
+		gameState.update();
+		renderer.render(gameState);
 	}
 }
