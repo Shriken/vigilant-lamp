@@ -6,11 +6,14 @@ import level;
 
 struct GameState {
 	bool running = true;
-	Level curLevel;
+	private bool paused = false;
+	Level curLevel = new Level();
 
 	void update() {
 		updateIO();
-		curLevel.update();
+		if (!paused) {
+			curLevel.update();
+		}
 	}
 
 	void updateIO() {
@@ -27,5 +30,15 @@ struct GameState {
 	}
 
 	void pressKey(SDL_Keycode keycode) {
+		switch (keycode) {
+			case SDLK_ESCAPE:
+				running = false;
+				break;
+			case SDLK_p:
+				paused = !paused;
+				break;
+			default:
+				break;
+		}
 	}
 }
