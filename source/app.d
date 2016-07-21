@@ -7,7 +7,7 @@ void main() {
 	writeln("hiya, starting up");
 	auto gameState = GameState();
 
-	while (true) {
+	while (gameState.running) {
 		gameState.update();
 		renderer.render(gameState);
 	}
