@@ -1,4 +1,4 @@
-module render;
+module render_primitives;
 
 import std.stdio;
 import derelict.sdl2.sdl;
@@ -7,8 +7,6 @@ import types;
 
 // Storage for our window
 SDL_Window* window;
-// Rendering context
-SDL_GLContext context;
 // Renderer
 SDL_Renderer* renderer;
 // Window width and heightk
@@ -28,7 +26,7 @@ bool init() {
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); 
 
     // Create our window, store it in our window variable
-    window = SDL_CreateWindow("Sumotion",
+    window = SDL_CreateWindow("vigilant-lamp",
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             width, height,
             SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_FOCUS);
@@ -38,22 +36,19 @@ bool init() {
         return false;
     }
 
-    renderer = SDL_GetRenderer(window);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     if (!renderer) {
         writeln("Couldn't create renderer: ", SDL_GetError());
         return false;
     }
 
-    // Create our rendering context
-    context = SDL_GL_CreateContext(window);
     SDL_GL_SetSwapInterval(1);
 
     return true;
 }
 
 void destroy() {
-    SDL_GL_DeleteContext(context);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
