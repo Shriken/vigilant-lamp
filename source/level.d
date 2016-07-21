@@ -17,6 +17,10 @@ class Level {
 			curRoom = room;
 		}
 	}
+
+	void update() {
+		foreach (room; rooms) room.update();
+	}
 }
 
 class Room {
@@ -25,4 +29,9 @@ class Room {
 	Bullet[] bullets;
 
 	this() {}
+
+	void update() {
+		foreach (agent; agents) agent.update();
+		foreach (bullet; bullets) bullet.update();
+	}
 }

@@ -1,9 +1,15 @@
 import std.stdio;
 
 import level;
+import renderer;
 
 void main() {
-	writeln("Edit source/app.d to start your project.");
+	writeln("hiya, starting up");
 	auto level = new Level();
 	writeln(level);
+
+	while (true) {
+		level.update();
+		renderer.render(level);
+	}
 }
